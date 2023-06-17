@@ -10,5 +10,4 @@ const WeatherResult = (props) => {
     );
 }
 
-
 export default WeatherResult;
