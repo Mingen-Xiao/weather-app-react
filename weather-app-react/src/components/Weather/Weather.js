@@ -7,12 +7,12 @@ import Card from 'react-bootstrap/Card';
 // main function
 const Weather = () => {
     const [weather, setWeather] = useState(undefined); // nullable value: ''(for String), null(有东西，只不过现在没有), undefined(无符合内容)
+    const [loading, setLoading] = useState(false);
     
-    const onSearch = (weatherData) => {
-        setWeather(weatherData);
-    }
-
-
+    // 父传子：把setState包到一个function里，然后把这个function丢到子里
+    const onSearch = (weatherData) => setWeather(weatherData);
+    // 父传子：把setState包到一个function里，然后把这个function丢到子里
+    const onSetLoading = (loading) => setLoading(loading);
     
     return (
         <>
@@ -23,7 +23,7 @@ const Weather = () => {
                     </h1>
                 </Card.Header>
                 <Card.Body>
-                    <SearchCity search={onSearch}/>
+                    <SearchCity search={onSearch} setLoading={onSetLoading}/>
                     {/* 以下语法=：weather ? <WeatherResult weather={weather}/> : null */}
                     {/* 即：只有weather为true才返回后面的，否则返回null */}
                     {weather && <WeatherResult weather={weather}/>}

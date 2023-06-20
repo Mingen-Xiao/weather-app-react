@@ -4,7 +4,7 @@ import {useState} from 'react';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 
-
+// props: 提取父的数据
 const SearchCity = (props) => {
 
     const [city, setCity] = useState('');
