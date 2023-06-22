@@ -4,6 +4,7 @@ const API_KEY = 'e32ccd46634145978b655340231506';
 // copied URL link from website Weather Api
 const FETCH_CITY_WEATHER_URL = `http://api.weatherapi.com/v1/current.json`;
 
+// fetch本身跟async await没关系，我们之所以能用async await是因为fetch return了promise（async await跟promise基本是一回事）
 export const fetchWeatherByCity = async (city) => {
     const url = new URL(FETCH_CITY_WEATHER_URL);
 

@@ -18,15 +18,30 @@ const SearchCity = (props) => {
         setCity(value);
     }
 
-    // function when click the search button
+    // call back function 被触发 when click the search button
     // async...await：'promise'的一个语法
     // async：会把这个function return的所有东西放到'promise'里
     const onSearchButtonClick = async (event) => {
+        // preventDefault：避免页面reload
         event.preventDefault();
-        const weatherData = await fetchWeatherByCity(city);
-        // setWeather(weatherData);
-        props.search(weatherData);
+        // 开始和后台交互（花时间），所以要加loading符号给user看
+        props.setLoading(true);
+        try {
+            // 异步操作拿到weather信息
+            const weatherData = await fetchWeatherByCity(city);
+            // setWeather(weatherData);
+            // 用props去setState，set的是Weather里面的信息
+            props.search(weatherData)
+        } catch (error) {
+            console.error('Failed to fetch city weather due to error: ', error);
+        // 无论有没有error都会运行finally这步
+        } finally {
+            props.setLoading(false);
+        }
     }
+    
+    
+    
         
     return (
         <>
